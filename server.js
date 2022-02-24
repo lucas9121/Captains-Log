@@ -6,7 +6,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const port = 3000
-const Log = require('./models/logs')
+const Logs = require('./models/logs')
 
 //MVC SETUP //
 //views //
@@ -18,8 +18,19 @@ app.engine('jsx', require('express-react-views').createEngine())
 app.use(express.urlencoded({extended: true}))
 
 // INDEX //
+// app.get('/logs', (req, res) => {
+//     res.send('WORK!!!!!!!!')
+// })
 app.get('/logs', (req, res) => {
-    res.send('<h1> Captain\'s Log</h1>')
+    Logs.find({}, (err, foundLog) => {
+        if(err){
+            res.status(400).send(err)
+        } else {
+            res.render('Index', {
+                logs: foundLog
+            })
+        }
+    })
 })
 
 
@@ -43,7 +54,7 @@ app.post('/logs', (req, res) => {
     } else {
         req.body.shipIsBroken = false
     }
-    Log.create(req.body, (err, createdLog) => {
+    Logs.create(req.body, (err, createdLog) => {
         if(err){
             res.status(400).send(err)
         } else {

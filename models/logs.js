@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const logSchema = new mongoose.Schema({
+const logsSchema = new mongoose.Schema({
     title: String,
     entry: String,
     shipIsBroken: { 
@@ -11,6 +11,6 @@ const logSchema = new mongoose.Schema({
 {timestamps: true}
 )
 
-const Log = mongoose.model('Logs', logSchema)
+const Logs = mongoose.model('Logs', logsSchema)
 
-module.exports = Log
+module.exports = Logs
