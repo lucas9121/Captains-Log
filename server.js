@@ -38,6 +38,11 @@ app.get('/logs/new', (req,res) => {
 
 // CREATE //
 app.post('/logs', (req, res) => {
+    if(req.body.shipIsBroken === 'on'){
+        req.body.shipIsBroken = true
+    } else {
+        req.body.shipIsBroken = false
+    }
     res.send(req.body)
 })
 
