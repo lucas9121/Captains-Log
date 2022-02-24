@@ -6,7 +6,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const port = 3000
-
+const Log = require('./models/logs')
 
 //MVC SETUP //
 //views //
@@ -43,7 +43,13 @@ app.post('/logs', (req, res) => {
     } else {
         req.body.shipIsBroken = false
     }
-    res.send(req.body)
+    Log.create(req.body, (err, createdLog) => {
+        if(err){
+            res.status(400).send(err)
+        } else {
+            res.redirect('Show')
+        }
+    })
 })
 
 
