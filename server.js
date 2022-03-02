@@ -8,7 +8,8 @@ const mongoose = require('mongoose')
 const app = express()
 const logs = require('./controllers/logs.js')
 const port = 3000
-const Logs = require('./models/logs')
+const Logs = require('./models/log')
+app.use(express.static('public')) 
 
 //MVC SETUP //
 //views //

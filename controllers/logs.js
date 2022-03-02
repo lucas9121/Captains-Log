@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Logs = require('../models/logs')
+const Logs = require('../models/log')
 
 // INDEX //
 router.get('/', (req, res) => {
@@ -60,7 +60,9 @@ router.post('/', (req, res) => {
         if(err){
             res.status(400).send(err)
         } else {
-            res.redirect('Show')
+            res.render('Show', {
+                log: createdLog
+            })
         }
     })
 })
