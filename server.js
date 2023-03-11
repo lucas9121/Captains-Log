@@ -7,11 +7,11 @@ const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 const app = express()
 const logs = require('./controllers/logs.js')
-const port = 3000
-const Logs = require('./models/log')
-app.use(express.static('public')) 
+const port = 3000;
+const Logs = require('./models/log');
+app.use(express.static('public'));
 
-//MVC SETUP //
+// MVC SETUP //
 //views //
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
